@@ -1,4 +1,5 @@
 import { getSEOTags } from "@/libs/seo"
+import ButtonSignin from "@/components/ButtonSignin"
 
 export const metadata = getSEOTags({ canonicalUrlRelative: "/" })
 
@@ -24,7 +25,7 @@ export default function Home() {
             className="rounded-lg mx-auto"
           />
 
-          <button className="btn btn-primary btn-wide">Get started</button>
+          <ButtonSignin extraStyle={`btn btn-primary btn-wide`} />
         </section>
       </main>
     </>
