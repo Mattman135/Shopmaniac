@@ -17,6 +17,12 @@ const userSchema = mongoose.Schema(
     image: {
       type: String,
     },
+    list: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "List",
+      },
+    ],
     // Used in the Stripe webhook to identify the user in Stripe and later create Customer Portal or prefill user credit card details
     customerId: {
       type: String,
