@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react"
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 export default function AddItemForm() {
   const [inputValue, setInputValue] = useState("")
@@ -10,6 +11,9 @@ export default function AddItemForm() {
 
     const data = await axios.post("/api/list", { inputValue })
     console.log(data.data)
+
+    const testData = await axios.get("/api/list", { inputValue })
+    console.log("Test data:", testData)
 
     setInputValue("") // clear input after save
   }

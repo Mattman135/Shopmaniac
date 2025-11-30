@@ -18,5 +18,5 @@ const listItemsSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 listItemsSchema.plugin(toJSON)
 
-export default mongoose.models.List ||
+export default mongoose.models.ListItem ||
   mongoose.model("ListItem", listItemsSchema)
