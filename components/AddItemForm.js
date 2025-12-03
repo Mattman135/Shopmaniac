@@ -12,9 +12,6 @@ export default function AddItemForm() {
     const data = await axios.post("/api/list", { inputValue })
     console.log(data.data)
 
-    const testData = await axios.get("/api/list", { inputValue })
-    console.log("Test data:", testData)
-
     setInputValue("") // clear input after save
   }
 
