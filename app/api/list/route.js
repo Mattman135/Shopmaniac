@@ -26,24 +26,34 @@ export async function POST(req) {
 export async function GET(req) {
   await connectMongo()
 
-  // 1. Get session from ShipFast auth
   const session = await auth()
   if (!session) {
     return Response.json({ error: "Not authenticated" }, { status: 401 })
   }
 
-  // 2. Find the user in MongoDB
   const user = await User.findById(session.user.id)
   if (!user) {
     return Response.json({ error: "User not found" }, { status: 404 })
   }
 
-  // 3. Query list items using user.list array of ObjectIds
   const items = await ListItem.find({
     _id: { $in: user.list },
   })
 
   console.log("Fetched items:", items)
-  // 4. Return items as JSON
   return Response.json({ items })
+}
+
+export async function DELETE(request) {
+  try {
+    await connectMongo()
+    const body = await request.json()
+    await ListItem.findByIdAndDelete(body.itemId)
+    return Response.json({ success: true })
+  } catch (error) {
+    return Response.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    )
+  }
 }
