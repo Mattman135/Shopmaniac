@@ -1,5 +1,5 @@
 import connectMongo from "@/libs/mongoose"
-import ButtonAccount from "@/components/ButtonAccount"
+import ButtonLogout from "@/components/ButtonLogout"
 import ListItem from "@/models/ListItem"
 import CartSection from "@/components/CartSection"
 
@@ -20,7 +20,7 @@ export default async function Dashboard() {
   return (
     <main className="min-h-screen p-8 pb-24">
       <section className="max-w-xl mx-auto space-y-8 flex flex-col items-center">
-        <ButtonAccount />
+        <ButtonLogout />
         <h1 className="text-3xl md:text-2xl font-extrabold">Your cart</h1>
         <CartSection initialItems={serializedItems} />
       </section>

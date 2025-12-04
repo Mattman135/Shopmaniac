@@ -8,13 +8,13 @@ export default function Home() {
     <>
       <main className="min-h-screen p-12 pb-24 text-center" data-theme="dark">
         <section className="max-w-xl mx-auto space-y-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold">
-            Food recipes you&apos;ll love 🥦
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold">Shopmaniac 🥦</h1>
 
           <p className="text-lg leading-relaxed text-base-content/80">
-            Our AI will generate recipes based on your preferences. New recipes
-            will be added every week!
+            The simplest, most <span className="font-bold"> minimalistic </span>
+            shopping list on the market—just what you{" "}
+            <span className="font-bold"> need </span>, nothing more nothing
+            less. Effortlessly create, manage, and check off your shopping list.
           </p>
 
           <img
