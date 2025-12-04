@@ -13,7 +13,6 @@ export default function AddItemForm() {
       setInputValue("")
       location.reload()
     } catch (error) {
-      setItems(initialItems)
       console.error("Error:", error)
       alert("Failed to add item")
     }
