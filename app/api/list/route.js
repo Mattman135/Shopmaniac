@@ -36,12 +36,12 @@ export async function GET(req) {
     return Response.json({ error: "User not found" }, { status: 404 })
   }
 
-  const items = await ListItem.find({
-    _id: { $in: user.list },
+  const userWithList = await User.findById(session.user.id).populate({
+    path: "list",
+    match: { user: session.user.id },
   })
 
-  console.log("Fetched items:", items)
-  return Response.json({ items })
+  return Response.json({ items: userWithList.list })
 }
 
 export async function DELETE(request) {
