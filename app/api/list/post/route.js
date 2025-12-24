@@ -2,11 +2,12 @@
 import { NextResponse } from "next/server"
 import connectMongo from "@/libs/mongoose"
 import ShoppingItem from "@/models/ShoppingItem"
-import { getToken } from "next-auth/jwt"
+import { auth } from "@/libs/auth"
 
 export async function POST(req) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
-  if (!token?.sub)
+  const session = await auth() // Use 'auth()' to get the session
+  if (!session?.user?.id)
+    // Check for session.user.id
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
   const body = await req.json()
@@ -17,10 +18,9 @@ export async function POST(req) {
   await connectMongo()
 
   try {
-    const item = await ShoppingItem.create({ user: token.sub, text })
+    const item = await ShoppingItem.create({ user: session.user.id, text })
     return NextResponse.json(item)
   } catch (err) {
-    // Duplicate
     if (err?.code === 11000) {
       return NextResponse.json(
         { error: "Item already exists" },
